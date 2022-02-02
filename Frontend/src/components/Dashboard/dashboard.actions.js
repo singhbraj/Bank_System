@@ -7,11 +7,11 @@ import {
 } from "./dashboard.constants";
 
 export const removeUser = (id, setUsersHandler) => dispatch => {
-   const apiEndPoint = `/v1/users/${id}`;
+   const apiEndPoint = `http://localhost:3000/v1/users/${id}`;
    axios
       .delete(apiEndPoint)
       .then(res => {
-         axios.get(`/v1/users`).then(res => {
+         axios.get(`http://localhost:3000/v1/users`).then(res => {
             dispatch(setAllUserData({
                users: res.data
             }));
@@ -26,7 +26,7 @@ export const removeUser = (id, setUsersHandler) => dispatch => {
 
 export const changeUserData = (id, userData, setUsersHandler) => dispatch => {
 
-   const apiEndPoint = `/v1/users/${id}`;
+   const apiEndPoint = `http://localhost:3000/v1/users/${id}`;
    axios
       .patch(apiEndPoint, userData)
       .then(res => {
@@ -41,11 +41,11 @@ export const changeUserData = (id, userData, setUsersHandler) => dispatch => {
 };
 export const updateUser = (id, userData, setUsersHandler) => dispatch => {
 
-   const apiEndPoint = `/v1/users/${id}`;
+   const apiEndPoint = `http://localhost:3000/v1/users/${id}`;
    axios
       .patch(apiEndPoint, userData)
       .then(res => {
-         axios.get(`/v1/users`).then(res => {
+         axios.get(`http://localhost:3000/v1/users`).then(res => {
             dispatch(setAllUserData({
                users: res.data
             }));
@@ -60,11 +60,11 @@ export const updateUser = (id, userData, setUsersHandler) => dispatch => {
 
 export const AddUser = (userData, setUsersHandler) => dispatch => {
 
-   const apiEndPoint = "/v1/auth/register"
+   const apiEndPoint = "http://localhost:3000/v1/auth/register"
    axios
       .post(apiEndPoint, userData)
       .then(res => {
-         axios.get(`/v1/users`).then(res => {
+         axios.get(`http://localhost:3000/v1/users`).then(res => {
             dispatch(setAllUserData({
                users: res.data
             }));

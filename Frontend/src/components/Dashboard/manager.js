@@ -213,7 +213,7 @@ function Manager(props) {
                                             required="required"
                                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                             title="Please Enter Currect Email.."
-                                            readonly
+                                            readOnly
                                         />
                                     </div>
                                     </> : 

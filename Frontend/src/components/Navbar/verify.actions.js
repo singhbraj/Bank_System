@@ -9,9 +9,10 @@ import {
 } from "./verify.constants";
 
 export const getUser = (setDataHandler) => dispatch => {
-   const apiEndPoint = "/v1/auth/refresh-tokens";
+   const apiEndPoint = "http://localhost:3000/v1/auth/refresh-tokens";
    if (!!localStorage.getItem('refreshToken')) {
       const token = localStorage.getItem('refreshToken');
+      // console.log("My token is ===>",token);
       axios
          .post(apiEndPoint, {
             refreshToken: token
@@ -28,7 +29,7 @@ export const getUser = (setDataHandler) => dispatch => {
             setAuthToken(access);
             // Set current user
             const decoded = jwt_decode(access.token);
-            axios.get(`/v1/users/${decoded.sub}`).then(res => {
+            axios.get(`http://localhost:3000/v1/users/${decoded.sub}`).then(res => {
                let userName = res.data.name;
                let userType = res.data.type;
                let userData = res.data;
@@ -40,7 +41,7 @@ export const getUser = (setDataHandler) => dispatch => {
                      user: res.data
                   }));
                } else {
-                  axios.get(`/v1/users`).then(res => {
+                  axios.get(`http://localhost:3000/v1/users`).then(res => {
                      dispatch(setAllUserData({
                         accessToken: access.token,
                         refreshToken: refresh.token,
@@ -62,7 +63,7 @@ export const getUser = (setDataHandler) => dispatch => {
 };
 export const logoutUser = (confirmHandler) => dispatch => {
 
-   const apiEndPoint = "/v1/auth/logout";
+   const apiEndPoint = "http://localhost:3000/v1/auth/logout";
    if (!!localStorage.getItem('refreshToken')) {
       const token = localStorage.getItem('refreshToken');
       axios
